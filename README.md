@@ -65,7 +65,7 @@ src/                # Source code
 |-- components/     # React components
 |-- pages/          # React Router pages
 |-- styles/         # Stylesheets
-public/             # Public assets
+app/                # app assets
 |-- index.html      # Main HTML file
 
 
