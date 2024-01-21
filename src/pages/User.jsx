@@ -18,11 +18,14 @@ function User() {
         }
 
         setUsers(data);
-      } catch (error) {
+      } catch (error) { 
         console.error("Error fetching users", error);
       }
     };
 
+
+    //fetching  all followers
+    
     const fetchFollowData = async () => {
       try {
         const followData = await supabase
@@ -128,7 +131,7 @@ function User() {
                   </div>
                   <div className="text-sm text-slate-500 z-10 ">
                     {isFollowing ? (
-                      <button className={`border-slate-400 border pr-16 pl-16 p-3 rounded-lg`} onClick={() => handleUnfollow(user?.user_id)}>
+                      <button className={`border-slate-400 border pr-10 pl-10 p-3 rounded-lg`} onClick={() => handleUnfollow(user?.user_id)}>
                         Following
                       </button>
                     ) : (

@@ -3,6 +3,7 @@ import AllPosts from "../components/AllPosts";
 import Followers from "../components/Followers";
 import Following from "../components/Following";
 import supabase from "../supabase/supabase";
+import { useLocation } from "react-router-dom";
 
 function Profile() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,17 +12,25 @@ function Profile() {
   const [currentFollowerCount, setCurrentFollowerCount] = useState(0);
   const [currentFollowingCount, setCurrentFollowingCount] = useState(0);
   const [currentPostCount, setCurrentPostCount] = useState(0);
-
+ 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((user, session) => {
-      setUser(session?.user);
-    });
+ 
+    const fetchUser = async () => {
+      const {data} =  await supabase.auth.getSession();
+      setUser(data?.session?.user);
+    };
 
+    fetchUser();
+  }, []);
+
+  useEffect(()=>{
+
+    //fetching all follower count of user
     const fetchCurrentFollowerCount = async () => {
       try {
         const { data, error } = await supabase
           .from("followers")
-          .select("follower_id")
+          .select("follower_id") 
           .eq("followee_id", user?.id);
 
         if (!error) {
@@ -32,6 +41,8 @@ function Profile() {
       }
     };
 
+
+ //fetching all following count of user
     const fetchCurrentFollowingCount = async () => {
       try {
         const { data, error } = await supabase
@@ -47,6 +58,7 @@ function Profile() {
       }
     };
 
+     //fetching all current  post of user
     const fetchCurrentPostCount = async () => {
       try {
         const { data, error } = await supabase
@@ -61,11 +73,16 @@ function Profile() {
         console.error("Error fetching current following count", error);
       }
     }; 
-
-    fetchCurrentFollowerCount();
+    if (user?.id) {
+      fetchCurrentFollowerCount();
     fetchCurrentFollowingCount();
     fetchCurrentPostCount();
-  }, []); 
+    }
+
+
+  },[user])
+    
+ 
 
   const itemList = [
     {

@@ -12,6 +12,7 @@ function Main() {
   const navigate=useNavigate()
   const isHidden= pathname==='/login' || pathname==='/signup'
 
+    // checking if user is authenticated
   useEffect(()=>{
     supabase.auth.onAuthStateChange((auth,_session)=>{
       if(!isHidden && !_session){
@@ -20,13 +21,7 @@ function Main() {
     })
   },[])
 
- 
 
-
- 
- 
- 
- 
   return (
     <div className='w-full h-full'>
       <Header/>

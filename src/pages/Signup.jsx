@@ -22,6 +22,7 @@ function Signup() {
   }
 
    
+  //handle signup
 
   const handleSignup=async()=>{
     const {name,email,password,confirmPassword}=inputValues
