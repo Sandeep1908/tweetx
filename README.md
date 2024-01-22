@@ -19,7 +19,7 @@ tweetx is a social media platform built with Vite and React, allowing users to s
   - [Profile](#profile)
   - [Users](#users)
 - [Contributing](#contributing)
-- [License](#license)
+ 
 
 ## About
 
