@@ -44,7 +44,7 @@ tweetx is a social media platform where users can share posts, follow others, an
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/tweetx.git
+   git clone https://github.com/Sandeep1908/tweetx.git
 
 cd tweetx
 
